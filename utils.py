@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
     """
     Call in a loop to create terminal progress bar
@@ -18,3 +20,26 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     # Print New Line on Complete
     if iteration == total: 
         print()
+
+def safe_map(fun, list):
+    mappedList = []
+    for item in list:
+        try:
+            mappedList.append(fun(item))
+        except Exception as e:
+            # print(e)
+            continue
+    return mappedList
+
+def hist_plot(data, bins, filename, xscale='linear'):
+    plt.clf()
+    plt.grid()
+    plt.xscale(xscale)
+    plt.hist(data, bins=bins, histtype='step')
+    plt.savefig(f"out/{filename}.png")
+
+def dump_dict(dict, filename):
+    f = open(f"out/{filename}.txt", "w")
+    for item in dict.items():
+        f.write(f"{item[0]}: {item[1]}\n")
+    f.close()
