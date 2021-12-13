@@ -3,7 +3,7 @@ import requests
 import urllib.parse
 import isodate
 import functools
-import utils
+import src.utils as utils
 import operator
 from os import path
 
